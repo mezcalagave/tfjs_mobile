@@ -44,10 +44,6 @@
         console.log(image);
         image = image.toFloat().mean(2).mul(1/255.0).reshape([-1, 48, 48, 1]);
         logits = model.predict(image);
-        model.classify(image).then(predictions => {
-          alert(predictions[0].className + ':' +
-          predictions[0].probabaility);
-        })
         const results = await logits.softmax().data();
         i = results.indexOf(Math.max(...results));
 
@@ -87,9 +83,6 @@
     }
 
     navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
-</script>
-  </body>
-</html>
     </script>
 </body>
 
